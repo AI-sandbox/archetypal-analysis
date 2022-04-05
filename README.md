@@ -1,4 +1,6 @@
 # Archetypal Analysis for Population Genetics
+This tool estimates genetic clusters by using genomic data in an unsupervised, computationally efficient manner, as described in [Gimbernat-Mayol et al, bioarxiv](https://www.biorxiv.org/content/10.1101/2021.11.28.470296v1). This work combines singular value decomposition (SV) with Archetypal Analysis to perform fast and accurate genetic clustering by first reducing the dimensionality of the space of genomic sequences. Each sequence is described as a convex combination (admixture) of archetypes (cluster representatives) in the reduced dimensional space. Visualizations of compositional plots are available by mapping the admixture coefficients to a simplex. See the example below:
+![PCA and Compositional plot](https://github.com/AI-sandbox/archetypal-analysis/blob/master/pca-polygon.pdf)
 
 ## Software requirements
 
