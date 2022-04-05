@@ -28,7 +28,7 @@ The package can be easily installed using `pip` on the root directory:
 
 ### Arguments
 
-- `-i`/`--input_file`: defines the input file / path. File must be in VCF, BED, PGEN or NPY format. If format is NPY, assumes data is already projected.
+- `-i`/`--input_file`: defines the input file / path. File must be in VCF, BED, PGEN or NPY format. If format is NPY, the data is assumed to be already projected.
 - `-o`/`--output_file`: defines the output file / path. File name does not need any extensions.
 - `-k`/`--n_archetypes`: defines the number of archetypes.
 - `--tolerance`: defines when to stop optimization.
@@ -38,7 +38,7 @@ The package can be easily installed using `pip` on the root directory:
 - `--initialize`: defines the initialization method to guess initial archetypes.
 ## Using Plink2 binary files (.pgen)
 
-If the data format you will be working on is _Plink2 Binary Files (.pgen, .psam, .pvar)_ then you also need to install the package `pgenlib`. This package is not available in PyPi, but is included in the [plink repository](https://github.com/chrchang/plink-ng/tree/master/2.0/Python). Installation instructions can be found in the [corresponding `README.md` file](https://github.com/chrchang/plink-ng/blob/master/2.0/Python/ReadMe.md). While you will need to clone the whole repository, you can remove it after installing the package, unless you plan to work with it.
+If the data format that you will be working on is _Plink2 Binary Files (.pgen, .psam, .pvar)_ then you also need to install the package `pgenlib`. This package is not available in PyPi, but is included in the [plink repository](https://github.com/chrchang/plink-ng/tree/master/2.0/Python). Installation instructions can be found in the [corresponding `README.md` file](https://github.com/chrchang/plink-ng/blob/master/2.0/Python/ReadMe.md). While you will need to clone the whole repository, you can remove it after installing the package, unless you plan to work with it.
 
 ## License
 
