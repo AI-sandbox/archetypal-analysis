@@ -1,6 +1,7 @@
 import argparse
 import sys
 from src.run_pipeline import run_pipeline
+from src.plot import run_plotting
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -34,3 +35,24 @@ def main():
         redundancy_try=args.redundancy_try
     )
     sys.exit(status)
+
+
+def plot_parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input_file', required=True, type=str, help='The Q file output')
+    parser.add_argument('-p', '--plot_type', required=True, type=str, 
+                        choices=['bar_simple', 'bar_html', "plot_simplex", "plot_simplex_html","bar_labeled"], help='The plot type')
+    parser.add_argument('-s', '--supplement_file', required=False, default = None, type=str, help='The supplement data file')
+    parser.add_argument('-so', '--sorted', required=False, default = False, type=bool, help='sorted boolean')
+    parser.add_argument('-dpi', '--dpi_number', required=False, default= 200, type=int, help='Resolution number')
+    parser.add_argument('-title', '--data_title', required=False, default = "", type=str, help='The plot title')
+    return parser.parse_args()
+
+
+def plot():
+    args = plot_parse_args()
+    run_plotting(args.input_file, args.plot_type, args.supplement_file, args.sorted, args.data_title, args.dpi_number )
+    print("file saved")
+
+    
+    

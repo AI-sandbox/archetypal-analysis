@@ -11,7 +11,7 @@ setup(
     author='Júlia Gimbernat-Mayol',
     author_email='juliagimbernat@gmail.com',
     entry_points={
-        'console_scripts': ['archetypal-analysis=entry:main']
+        'console_scripts': ['archetypal-analysis=entry:main', 'archetypal-plot=entry:plot']
     },
     license='CC BY-NC 4.0',
     packages=find_packages('archetypal_analysis/')+['.'],
