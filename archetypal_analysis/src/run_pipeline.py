@@ -34,7 +34,7 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
     random_state:   Defines the random seed number for initialization. No effect if "furthest_sum" is selected.       
                     
     C:              is a constraint coefficient to ensure that the summation of
-                    alfa's and beta's equals to 1. C is conisdered to be inverse
+                    alfa's and beta's equals to 1. C is considered to be inverse
                     of M^2 in the original paper.
     initialize:     Defines the initialization method to guess initial archetypes:
                         1. furthest_sum (Default): the idea and code taken from https://github.com/ulfaslak/py_pcha and the original author is: Ulf Aslak Jensen.
@@ -63,7 +63,7 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
       snpreader = SNPReader()
       G = snpreader.read_data(input_file)
       print('Computing PCA...')
-      pca = PCA(n_components=(G.shape[0]-1), random_state=random_state)
+      pca = PCA(random_state=random_state)
       pca_result = pca.fit_transform(G)
       save_pca_file = f"{input_file.split('.')[0]}_pca_projection.npy"
       print(f'Saving PCA results to {save_pca_file} to allow reuse...')
@@ -86,5 +86,7 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
     print('Saving Z...')
     # save Z file
     Z = AA.archetypes
+    Z = pca.inverse_transform(AA.archetypes.T)
+    print('Z shape is ...', Z.shape)
     pd.DataFrame(Z).to_csv(output_file+f'.{n_archetypes}.Z', index=False, header=False, sep=' ')
     return 0
