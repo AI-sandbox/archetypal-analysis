@@ -42,6 +42,34 @@ The package can be easily installed using `pip` on the root directory:
 
 If the data format that you will be working on is _Plink2 Binary Files (.pgen, .psam, .pvar)_ then you also need to install the package `pgenlib`. This package is not available in PyPi, but is included in the [plink repository](https://github.com/chrchang/plink-ng/tree/master/2.0/Python). Installation instructions can be found in the [corresponding `README.md` file](https://github.com/chrchang/plink-ng/blob/master/2.0/Python/ReadMe.md). While you will need to clone the whole repository, you can remove it after installing the package, unless you plan to work with it.
 
+## Plotting
+For the plotting functionally, you should use archetypal-plot instead of archetypal analysis in bash. 
+
+```console
+archetypal-plot -i [Q_FILE_OUTPUT_PATH] -p [PLOT_TYPE] [OTHER_PLOT_OPTIONS]
+```
+**Parameters:**
+- `Q_FILE_OUTPUT_PATH`: Path where the archetypal analysis result was saved.
+- `PLOT_TYPE`: The type of plot you want. Options include:
+  - `bar_simple`: Simple matplotlib bar plot.
+  - `bar_html`: Interactive HTML bar plot.
+  - `plot_simplex`: Simplex plot using matplotlib.
+  - `plot_simplex_html`: Interactive HTML simplex plot.
+  - `bar_labeled`: Labeled bar plot.
+
+**Other Plot Options:**
+
+- `supplement`: Path for any supplementary description data. The data file should have no column name or index, and values should be separated by spaces.
+- `sorted`: If passed, it sorts the data by the maximum archetype component.
+- `dataTitle`: Title for your plot.
+- `dpi_num`: Quality of the saved plot graphic. 
+
+For example:
+
+```console
+archetypal-plot -i data -p bar_simple
+```
+
 ## License
 
 **NOTICE**: This software is available for use free of charge for academic research use only. Academic users may fork this repository and modify and improve to suit their research needs, but also inherit these terms and must include a licensing notice to that effect. Commercial users, for profit companies or consultants, and non-profit institutions not qualifying as "academic research" should contact the authors for a separate license. This applies to this repository directly and any other repository that includes source, executables, or git commands that pull/clone this repository as part of its function. Such repositories, whether ours or others, must include this notice.
