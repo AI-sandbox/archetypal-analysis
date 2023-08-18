@@ -38,6 +38,8 @@ The package can be easily installed using `pip` on the root directory:
 - `--random_state`: defines the random seed number for initialization. No effect if "furthest_sum" is selected.                   
 - `-C`/`--constraint_coef`: constraint coefficient to ensure that the summation of alfa's and beta's equals to 1. C is conisdered to be inverse of M^2 in the original paper.
 - `--initialize`: defines the initialization method to guess initial archetypes.
+- `-dr`/`--dim_reduction`: defines the dimensionality reduction technique to project the input data. Accepted=['PCA', 'MDS', 'UMAP', 'TSNE']. Default='PCA'.
+
 ## Using Plink2 binary files (.pgen)
 
 If the data format that you will be working on is _Plink2 Binary Files (.pgen, .psam, .pvar)_ then you also need to install the package `pgenlib`. This package is not available in PyPi, but is included in the [plink repository](https://github.com/chrchang/plink-ng/tree/master/2.0/Python). Installation instructions can be found in the [corresponding `README.md` file](https://github.com/chrchang/plink-ng/blob/master/2.0/Python/ReadMe.md). While you will need to clone the whole repository, you can remove it after installing the package, unless you plan to work with it.

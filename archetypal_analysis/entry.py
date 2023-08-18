@@ -18,6 +18,7 @@ def parse_args():
                         2. random:  Randomly selects archetypes in the feature space. The points could be any point in space
                         3. random_idx:  Randomly selects archetypes from points in the dataset.''')    
     parser.add_argument('--redundancy_try', required=False, type=int, default=30)
+    parser.add_argument('-dr', '--dim_reduction', required=False, type=str, default='PCA', help='Defines the dimensionality reduction technique to project the input.')
     return parser.parse_args()
 
 
@@ -32,7 +33,8 @@ def main():
         random_state=args.random_state,
         C=args.constraint_coef,
         initialize=args.initialize,
-        redundancy_try=args.redundancy_try
+        redundancy_try=args.redundancy_try,
+        dim_reduction=args.dim_reduction
     )
     sys.exit(status)
 
@@ -53,6 +55,4 @@ def plot():
     args = plot_parse_args()
     run_plotting(args.input_file, args.plot_type, args.supplement_file, args.sorted, args.data_title, args.dpi_number )
     print("file saved")
-
-    
     
