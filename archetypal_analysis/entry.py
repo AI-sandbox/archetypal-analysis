@@ -55,4 +55,5 @@ def plot():
     args = plot_parse_args()
     run_plotting(args.input_file, args.plot_type, args.supplement_file, args.sorted, args.data_title, args.dpi_number )
     print("file saved")
+
     

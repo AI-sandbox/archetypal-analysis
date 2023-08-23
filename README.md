@@ -30,7 +30,7 @@ The package can be easily installed using `pip` on the root directory:
 
 ### Arguments
 
-- `-i`/`--input_file`: defines the input file / path. File must be in VCF, BED, PGEN or NPY format. If format is NPY, the data is assumed to be already projected.
+- `-i`/`--input_file`: defines the input file / path. File must be in VCF, BED, PGEN or NPY format.
 - `-o`/`--output_file`: defines the output file / path. File name does not need any extensions.
 - `-k`/`--n_archetypes`: defines the number of archetypes.
 - `--tolerance`: defines when to stop optimization.
