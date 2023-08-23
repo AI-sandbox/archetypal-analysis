@@ -72,7 +72,7 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
 
     if dim_reduction == 'PCA':
       print('Computing PCA...')
-      dim = PCA(n_components=(G.shape[0]-1), random_state=random_state)
+      dim = PCA(n_components=min(G.shape[0], G.shape[1])-1, random_state=random_state)
     elif dim_reduction == 'MDS':
       print('Computing MDS...')
       dim = MDS(random_state=random_state)
@@ -111,3 +111,4 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
     print('Z shape is ...', Z.shape)
     pd.DataFrame(Z).to_csv(output_file+f'.{n_archetypes}.Z', index=False, header=False, sep=' ')
     return 0
+  
