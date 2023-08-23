@@ -67,7 +67,7 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
     """
     if input_file.endswith('.npy'):
       print('Loading already projected data...')
-      pca_result = np.load(input_file)
+      dim_result = np.load(input_file)
     else:
       snpreader = SNPReader()
       G = snpreader.read_data(input_file)
