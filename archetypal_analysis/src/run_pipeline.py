@@ -64,31 +64,43 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
         
                     Array of archetypes. Each columns represents an archetype.
     """
+    if input_file.endswith('.npy'):
+      G = np.load(input_file)
+    else:
+      snpreader = SNPReader()
+      G = snpreader.read_data(input_file)
+
     if dim_reduction == 'PCA':
-        print('Computing PCA...')
-        dim = PCA(n_components=min(G.shape[0], G.shape[1])-1, random_state=random_state)
+      print('Computing PCA...')
+      dim = PCA(n_components=min(G.shape[0], G.shape[1])-1, random_state=random_state)
     elif dim_reduction == 'MDS':
-        print('Computing MDS...')
-        dim = MDS(random_state=random_state)
+      print('Computing MDS...')
+      dim = MDS(random_state=random_state)
     elif dim_reduction == 'UMAP':
-        print('Computing UMAP...')
-        dim = UMAP(random_state=random_state)
+      print('Computing UMAP...')
+      dim = UMAP(random_state=random_state)
     elif dim_reduction == 'TSNE':
-        print('Computing TSNE...')
-        dim = TSNE(random_state=random_state)
+      print('Computing TSNE...')
+      dim = TSNE(random_state=random_state)
     elif dim_reduction == 'None':  # Handling no dimensionality reduction
         dim_result = G
     else:
-        raise ValueError(f"{dim_reduction} is not a valid --dim_reduction. "
-                         "Accepted=['PCA', 'MDS', 'UMAP', 'TSNE', 'None'].")
-    
-    # If a dimensionality reduction technique was used, save its results.
+      raise ValueError(f"{dim_reduction} is not a valid --dim_reduction. Accepted=['PCA', 'MDS', 'UMAP', 'TSNE', 'None'].")
+
     if dim_reduction != 'None':
         dim_result = dim.fit_transform(G)
         save_dim_file = f"{input_file.split('.')[0]}_{dim_reduction.lower()}_projection.npy"
         print(f'Saving {dim_reduction} results to {save_dim_file} to allow reuse...')
         np.save(save_dim_file, dim_result)
-    # Your code that is preserved
+
+    # Perform Archetypal Analysis
+    AA = ArchetypalAnalysis(n_archetypes = n_archetypes, 
+                            tolerance = tolerance, 
+                            max_iter = max_iter, 
+                            random_state = random_state, 
+                            C = C,
+                            initialize = initialize,
+                            redundancy_try = redundancy_try)
     print('Fitting AA...')
     AA.fit(dim_result)
     print('Saving Q...')
@@ -98,7 +110,8 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
     print('Saving Z...')
     # save Z file
     Z = AA.archetypes
-    Z = dim.inverse_transform(AA.archetypes.T) if dim_reduction != 'None' else AA.archetypes.T
+    Z = dim.inverse_transform(AA.archetypes.T)
     print('Z shape is ...', Z.shape)
     pd.DataFrame(Z).to_csv(output_file+f'.{n_archetypes}.Z', index=False, header=False, sep=' ')
     return 0
+  
