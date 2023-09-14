@@ -110,7 +110,10 @@ def run_pipeline(input_file, output_file, n_archetypes, tolerance = 0.001,
     print('Saving Z...')
     # save Z file
     Z = AA.archetypes
-    Z = dim.inverse_transform(AA.archetypes.T)
+    if dim_reduction != 'None':
+        Z = dim.inverse_transform(AA.archetypes.T)
+    else:
+        Z = AA.archetypes.T
     print('Z shape is ...', Z.shape)
     pd.DataFrame(Z).to_csv(output_file+f'.{n_archetypes}.Z', index=False, header=False, sep=' ')
     return 0
