@@ -61,7 +61,7 @@ archetypal-plot -i [Q_FILE_OUTPUT_PATH] -p [PLOT_TYPE] [OTHER_PLOT_OPTIONS]
 
 **Other Plot Options:**
 
-- `supplement`: Path for any supplementary description data. The data file should have no column name or index, and values should be separated by spaces.
+- `supplement`: Path for any supplementary description data. The data file should have no column name or index, and values should be separated by tabs.
 - `sorted`: If passed, it sorts the data by the maximum archetype component.
 - `dataTitle`: Title for your plot.
 - `dpi_num`: Quality of the saved plot graphic. 
